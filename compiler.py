@@ -35,8 +35,11 @@ def parse_lr_table(lr_table, input_string):
                 del input_lst[i-count: i]
                 input_lst.insert(i - count, reduction)
                 print(input_lst)
+                print(i)
                 stack.append(int(lr_table[stack[-1],reduction][1:]))
                 i = i-count +1
+                print(stack)
+                print(i)
             elif action == 'acc':
                 # Accept 액션일 경우
                 print(input_lst)
