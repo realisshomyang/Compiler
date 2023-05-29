@@ -41,7 +41,6 @@ def parse_lr_table(lr_table, input_string):
                 i += 1  # 다음 입력 문자열로 이동
             elif action[0] == 'g':
                 # Goto 액션일 경우
-                stack.push(symbol)  # 기호를 다시 스택에 푸시
                 stack.push(int(action[1:]))  # 다음 상태를 스택에 푸시
             elif action[0] == 'r':
                 # Reduce 액션일 경우
@@ -56,21 +55,6 @@ def parse_lr_table(lr_table, input_string):
         else:
             # 오류 처리
             return False
-
-
-lr_table = {
-    (0, 'vtype'): ('s2'),
-    (0, 'VDECL'): ('g1'),
-    (1, 'vtype'): ('s6'),
-    (1, 'class'): ('s7'),
-    # …
-}
-
-productions = {
-    0: ('S', 'VDECL'),
-    1: ('VDECL', 'vtype', 'ID', 'SEMICOLON'),
-    # …
-}
 
 input_string = input().split()
 print(input_string)
