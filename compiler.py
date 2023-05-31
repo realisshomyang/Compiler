@@ -2,6 +2,7 @@ import table
 lr_table = table.lr_table
 productions = table.productions
 
+
 def parse_lr_table(lr_table, input_string):
     stack = []
     stack.append(0)  # 초기 상태(0)를 스택에 푸시
@@ -36,8 +37,8 @@ def parse_lr_table(lr_table, input_string):
                 input_lst.insert(i - count, reduction)
                 print(input_lst)
                 print(i)
-                stack.append(int(lr_table[stack[-1],reduction][1:]))
-                i = i-count +1
+                stack.append(int(lr_table[stack[-1], reduction][1:]))
+                i = i-count + 1
                 print(stack)
                 print(i)
             elif action == 'acc':
@@ -47,6 +48,7 @@ def parse_lr_table(lr_table, input_string):
         else:
             # 오류 처리
             return False
+
 
 input_string = input().split()
 input_string.append('$')
