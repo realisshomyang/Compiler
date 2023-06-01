@@ -92,6 +92,6 @@ if result:
     #image파일 생성
     exporter = UniqueDotExporter(root)
     exporter.to_picture("tree.png")
-    os.system("open tree.png")
+    os.system("xdg-open tree.png")
 else:
     print("파싱 불가능합니다.")
