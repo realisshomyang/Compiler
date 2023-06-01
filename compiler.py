@@ -19,6 +19,13 @@ class TreeNode:
         for child in self.children:
             child.print_tree(level + 1)
 
+    def create_tree_node(self):
+        node = Node(str(self.data))
+        for child in self.children:
+            child_node = child.create_tree_node()
+            child_node.parent = node
+        return node
+
 def parse_lr_table(lr_table, input_string):
     stack = []
     stack.append(0)  # 초기 상태(0)를 스택에 푸시
@@ -69,10 +76,13 @@ input_string = input().split()
 input_string.append('$')
 for x in input_string:
     parsetree.append(TreeNode(x))
+
 result = parse_lr_table(lr_table, parsetree)
 if result:
     print("print parse tree")
-    parsetree[-1].print_tree()
-    print("파싱 가능합니다.")
+    root = parsetree[-1].create_tree_node()
+    for pre, _, node in RenderTree(root):
+        print(f"{pre}{node.name}")
 else:
     print("파싱 불가능합니다.")
+
