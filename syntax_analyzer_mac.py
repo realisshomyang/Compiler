@@ -24,12 +24,12 @@ class TreeNode:
             child_node.parent = node
         return node
 
-def parse_lr_table(lr_table, input_string):
+def parse_lr_table(lr_table):
+    last_parse = 0
     stack = []
     stack.append(0)  # 초기 상태(0)를 스택에 푸시
     i = 0  # 입력 문자열의 인덱스
     cnt = 0
-    valcnt = 0
     while True:
         cnt += 1
         state = stack[-1]
@@ -52,6 +52,7 @@ def parse_lr_table(lr_table, input_string):
                     stack.pop()
                 for x in parsetree[i - count : i]:
                     tmp_node.add_child(x)
+                last_parse = tmp_node
                 parsetree.append(tmp_node)
                 del parsetree[i - count : i]
                 parsetree.insert(i - count, tmp_node)
@@ -61,7 +62,8 @@ def parse_lr_table(lr_table, input_string):
                 # Accept 액션일 경우
                 return True
         else:
-            # 오류 처리
+            print("Line number(in Parsing sequence) : " + str(cnt))
+            print("state : " + str(state) + " and next symbol : " + symbol)
             return False
 
 # 커맨드 라인 인자로 입력 파일 경로 받기
@@ -81,7 +83,7 @@ input_string.append('$')
 
 for x in input_string:
     parsetree.append(TreeNode(x))
-result = parse_lr_table(lr_table, parsetree)
+result = parse_lr_table(lr_table)
 if result:
     print("파싱 가능합니다.")
     print("Print parse tree:")
@@ -89,9 +91,9 @@ if result:
     # 트리 그래프 생성 및 출력
     for pre, _, node in RenderTree(root):
         print(f"{pre}{node.name}")
-    #image파일 생성
+    #image 파일 생성
     exporter = UniqueDotExporter(root)
     exporter.to_picture("parsetree.png")
     os.system("open parsetree.png")
 else:
-    print("파싱 불가능합니다.")
+    print("이 상황에서는 파싱 불가능합니다.")
