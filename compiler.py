@@ -12,13 +12,7 @@ class TreeNode:
 
     def add_child(self, child):
         self.children.append(child)
-
-    def print_tree(self, level=0):
-        prefix = "  " * level
-        print(prefix + "|_" + str(self.data))
-        for child in self.children:
-            child.print_tree(level + 1)
-
+        
     def create_tree_node(self):
         node = Node(str(self.data))
         for child in self.children:
@@ -37,13 +31,8 @@ def parse_lr_table(lr_table, input_string):
         cnt +=1
         state = stack[-1]
         symbol = parsetree[i].data
-        print("-------" + str(cnt) + "번째")
         if (state, symbol) in lr_table:
             action = lr_table[(state, symbol)]
-            print(stack)
-            print("i :" + str(i))
-            print(action)
-            print(state)
             if action[0] == 's':
                 # Shift 액션일 경우
                 stack.append(int(action[1:]))  # 다음 상태를 스택에 푸시
