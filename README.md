@@ -15,8 +15,8 @@ platform : Linux(ubuntu)
 ### Installation
 
 ```bash\
-sudo apt-get python3-pip
-apt-get install graphviz
+sudo apt-get install python3-pip
+sudo apt-get install graphviz
 git clone https://github.com/realisshomyang/Compiler.git
 cd Compiler
 pip install -r requirements.txt
