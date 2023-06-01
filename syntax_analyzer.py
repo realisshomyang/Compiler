@@ -3,6 +3,7 @@ import table
 from anytree.exporter import UniqueDotExporter
 from anytree import Node, RenderTree
 import os
+import subprocess
 
 lr_table = table.lr_table
 productions = table.productions
@@ -83,7 +84,7 @@ for x in input_string:
     parsetree.append(TreeNode(x))
 result = parse_lr_table(lr_table, parsetree)
 if result:
-    print("파싱 가능합니다.")
+    print("parsing is available")
     print("Print parse tree:")
     root = parsetree[-1].create_tree_node()
     # 트리 그래프 생성 및 출력
@@ -91,7 +92,9 @@ if result:
         print(f"{pre}{node.name}")
     #image파일 생성
     exporter = UniqueDotExporter(root)
-    exporter.to_picture("tree.png")
-    os.system("xdg-open tree.png")
+    file_path = "parsetree.png"
+    exporter.to_picture("parsetree.png")
+    #os.system(f"xdg-open {file_path}")
+    #subprocess.run(["xdg-open",file_path])
 else:
-    print("파싱 불가능합니다.")
+    print("impossible to parse")

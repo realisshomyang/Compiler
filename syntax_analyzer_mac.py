@@ -91,7 +91,7 @@ if result:
         print(f"{pre}{node.name}")
     #image파일 생성
     exporter = UniqueDotExporter(root)
-    exporter.to_picture("tree.png")
-    os.system("open tree.png")
+    exporter.to_picture("parsetree.png")
+    os.system("open parsetree.png")
 else:
     print("파싱 불가능합니다.")
