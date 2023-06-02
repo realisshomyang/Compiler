@@ -1,3 +1,12 @@
+"""
+changed the lr_table on the website to a dictionary data structure.
+Key: (state, character to the right of the splitter)
+Value: actions
+in actions 
+s is for shift
+r is for reduce
+g is for goto
+"""
 lr_table = {
     (0, 'vtype') : ('s5'),
     (0, 'class') : ('s6'),
@@ -286,7 +295,10 @@ lr_table = {
     (85, 'while') : ('r32'),
     (85, 'return') : ('r32')
 }
-
+"""production (dictionary)
+key: left hand side nonterminal of production
+value : sum of non-terminal and terminal
+"""
 productions = {
 0 : ('START' , 1),
 1 : ('CODE', 2),
