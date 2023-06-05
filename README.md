@@ -1,5 +1,11 @@
 # Compiler
 
+## 프로젝트 설명
+
+이 프로젝트는 중앙대학교 23-1학기 compiler term project의 코드와 테스트 파일을 저장해놓은 repository입니다 :) 
+
+simple JAVA CFG에 대한 parsing 가능 여부를 파악하고, 파스 트리를 제공해줍니다. 
+
 
 ## 설치 안내
 
